@@ -1,37 +1,61 @@
 from django.db import models
-from .id_creation import Unique_Ids
 import uuid
+#from django.contrib.auth.models import User
 
 # Create your models here.
-class Game(models.Model):
-    
-    #new_game_id = Unique_Ids()
 
-    games_types = [
-        ('Ranked solo duo', 'ranked_sd'),
-        ('Ranked flex','flex'),
-        ('Normal', 'normal'),
-        ('Draft', 'draft'),
-        ('Aram', 'aram'),  
-    ]
-    date = models.DateTimeField(auto_now_add=True)
-    kda_p1 = models.CharField(max_length=30, default='0/0/0')
-    kda_p2 = models.CharField(max_length=30, default='0/0/0')
-    player1 = models.CharField(max_length=30)
-    player2 = models.CharField(max_length=30)
-    p1_damage = models.IntegerField()
-    p2_damage = models.IntegerField()
-    p1_wins = models.IntegerField()
-    p2_wins = models.IntegerField()
-    champion_name_p1 = models.CharField(max_length=30)
-    champion_name_p2 = models.CharField(max_length=30)
-    game_type = models.CharField(
-        choices=games_types,
-        default='Unknown',
-        max_length=30
-    )
-    g_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    thumb = models.ImageField(default='default.png', blank=True)
+class Summoners(models.Model):
+    _id = models.CharField(max_length=100, default=None, primary_key=True)
+    accountId = models.CharField(max_length=100, default=None)
+    puuid = models.CharField(max_length=100, default=None)
+    name = models.CharField(max_length=30, default=None)
+    profileIconId = models.IntegerField(default=None)
+    summonerLevel = models.IntegerField(default=None)
 
-    def __str__(self):
-        return self.game_type
+
+class Games(models.Model):
+
+    riot_game_id = models.BigIntegerField(null=False, default=0, primary_key=True)
+    platform_id = models.CharField(max_length=10, default=None)
+    queue = models.IntegerField(default=0)
+    season = models.IntegerField(default=0)
+    timestamp = models.BigIntegerField(default=0)
+    game_duration = models.IntegerField(default=0)
+    _map = models.IntegerField(default=0)
+    gamer = models.ManyToManyField(Summoners)
+
+class Participants(models.Model):
+    id = models.AutoField(primary_key=True)
+    summonerName = models.CharField(max_length=30, default=None)
+    accountId = models.CharField(max_length=100, default=None)
+    # summonerId = models.CharField(max_length=100, default=None)
+    profileIcon = models.IntegerField(default=None)
+    participantId = models.IntegerField(default=None)
+    teamId = models.IntegerField(default=None)
+    championId = models.IntegerField(default=None)
+    spell1Id = models.IntegerField(default=None)
+    spell2Id = models.IntegerField(default=None)
+    win = models.IntegerField(default=None)
+    item0 = models.IntegerField(default=None)
+    item1 = models.IntegerField(default=None)
+    item2 = models.IntegerField(default=None)
+    item3 = models.IntegerField(default=None)
+    item4 = models.IntegerField(default=None)
+    item5 = models.IntegerField(default=None)
+    item6 = models.IntegerField(default=None)
+    kills = models.IntegerField(default=None)
+    deaths = models.IntegerField(default=None)
+    assists = models.IntegerField(default=None)
+    totalDamageDealtToChampions = models.IntegerField(default=None)
+    damageDealtToTurrets = models.IntegerField(default=None)
+    visionScore = models.IntegerField(default=None)
+    totalDamageTaken = models.IntegerField(default=None)
+    visionWardsBoughtInGame = models.IntegerField(default=None)
+    _game = models.ForeignKey(Games, on_delete=models.CASCADE, default = 0)
+
+
+
+
+
+
+

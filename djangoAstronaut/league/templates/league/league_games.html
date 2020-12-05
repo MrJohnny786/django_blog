@@ -1,67 +1,26 @@
-{% extends 'base_layout.html' %} {% block content %}
-<div class='container'>
-    {% for game in games %}
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">Player 1</th>
-                <th scope="col">Player 2</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <tr>
-                <td>
-                    <div class="col-sm">
-                        Summoner: {{game.player1}}
-                    </div>
-                </td>
-                <td>
-                    <div class="col-sm">
-                        Summoner: {{game.player2}}
-                    </div>
-                </td>
+{% extends 'base_layout.html' %} {% load static %} {% block content %}
 
 
-            </tr>
-            <tr>
-                <td>
-                    <div class="col-sm">
-                        KDA: {{game.kda_p1}}
-                    </div>
-                </td>
-                <td>
-                    <div class="col-sm">
-                        KDA: {{game.kda_p2}}
-                    </div>
-                </td>
+<div class="container">
+    <div class="container">
+        <div class="center-align create_space">
+            <img width="200" src="{% static 'b.png'%}">
+        </div>
+    </div>
+
+    <div class='create-article'>
+        <h2>Find Summoner</h2>
+        <form class="site-form" action="{% url 'league:create' %}" method="post">
+            {% csrf_token %}
+            <input id="your_name" type="text" name="summoner_name" value="">
+            <input type="submit" value='Create'>
+        </form>
+
+    </div>
 
 
-            </tr>
-
-            <tr>
-                <td>
-                    <div class="col-sm">
-                        Damage: {{game.p1_damage}}
-                    </div>
-                </td>
-                <td>
-                    <div class="col-sm">
-                        Damage: {{game.p2_damage}}
-                        <div>
-                            <a href="{% url 'league:detail' g_id=game.g_id %}">extra</a>
-                        </div>
-
-                    </div>
-
-                </td>
-
-
-            </tr>
-
-
-        </tbody>
-    </table>
-    <br> {% endfor %}
 </div>
+
+
+
 {% endblock %}

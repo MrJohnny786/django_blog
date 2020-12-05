@@ -6,6 +6,7 @@ from . import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from django.conf import settings
+from league import views as league_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -13,7 +14,7 @@ urlpatterns = [
     url(r'^articles/', include('articles.urls')),
     url(r'^league/', include('league.urls')),
     url(r'^about/$', views.about),
-    url(r'^$', views.homepage),
+    url(r'^$', league_views.league_games, name = "home"),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

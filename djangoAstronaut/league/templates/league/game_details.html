@@ -1,42 +1,67 @@
-{% extends 'base_layout.html' %} {% block content %}
+{% extends 'base_layout.html' %} {% block content %} {% for game in games %} {% if game %}
+<div class="row">
+    <div class="col s4 ">
+        <h3 class="card-panel  center-align #9ccc65 light-green lighten-1">Game Information</h1>
+            <div class="divider"></div>
+            <div class="section">
+                <table class="striped">
+                    <thead>
+                        <tr>
+                            <th>Server</th>
+                            <th>Mode</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 my-4 mx-auto">
-            <h2 class="text-center">{{data.game_type}} game at: {{data.date}}</h2>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="table-responsve">
-                        <table class="table table-striped table-hover">
-                            <thead class="thead-inverse">
-                                <tr>
-                                    <th class="w-25"></th>
-                                    <th class="">{{data.player1}}</th>
-                                    <th class="">{{data.player2}}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="w-25 option">Damage Dealt</td>
-                                    <td class="">{{data.p1_damage}}</td>
-                                    <td class="">{{data.p2_damage}}</td>
-
-                                </tr>
-                                <tr>
-                                    <td class="option">K/D/A</td>
-                                    <td><i class="fa fa-check"></i>{{data.kda_p1}}</td>
-                                    <td><i class="fa fa-check"></i>{{data.kda_p2}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="option">Champions</td>
-                                    <td>{{data.champion_name_p1}}</td>
-                                    <td>{{data.champion_name_p2}}</td>
-                                </tr>
-                        </table>
-                    </div>
-                </div>
+                    <tbody>
+                        <tr>
+                            <td>{{ data.platform_id }}</td>
+                            <td>{{ data.queue }}</td>
+                            <td>{{ data.game_duration }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </div>
+            <div class="divider"></div>
+    </div>
+
+    <div class="col s8 ">
+        <h3 class="center-align card-panel #ffe082 amber lighten-3">Participants</h1>
+            <div class="divider"></div>
+            <div class="section">
+                <table class="striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Item Name</th>
+                            <th>Item Price</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Alvin</td>
+                            <td>Eclair</td>
+                            <td>$0.87</td>
+                        </tr>
+                        <tr>
+                            <td>Alan</td>
+                            <td>Jellybean</td>
+                            <td>$3.76</td>
+                        </tr>
+                        <tr>
+                            <td>Jonathan</td>
+                            <td>Lollipop</td>
+                            <td>$7.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="divider"></div>
     </div>
 </div>
-{% endblock %}
+</div> {% else %}
+<h1>
+    Nothings here .. just yet!
+</h1>
+{% endif %} {% endfor %} {% endblock %}

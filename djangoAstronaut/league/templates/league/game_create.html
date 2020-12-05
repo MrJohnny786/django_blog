@@ -1,0 +1,14 @@
+{% extends 'base_layout.html' %} {% block content %}
+
+<div class='create-article'>
+    <h2>Add a new game</h2>
+    <form class="site-form" action="{% url 'league:create' %}" method="post">
+        {% csrf_token %}
+        <input id="your_name" type="text" name="summoner_name" value="">
+        <input type="submit" value='Create'>
+    </form>
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'base_layout.html' %} {% load static %} {% block content %} {% if games %} {% for y in summoner %} {% for x in games %}
+
+<div class="container">
+    <div class='create-article'>
+        <h2>Find summoner</h2>
+        <form class="site-form" action="{% url 'league:create' %}" method="post">
+            {% csrf_token %}
+            <input id="your_name" type="text" name="summoner_name" value="">
+            <input type="submit" value='Create'>
+        </form>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col s4">
+            <div class="row">
+                <div class="col s12 m12">
+                    <div class="card  blue-grey  ">
+                        <div class="card-content white-text">
+                            <span class="card-title">{{ y.name }}</span>
+                            <ul class="collection ">
+                                <li class="collection-item avatar blue-grey lighten-2">
+                                    <img src="{% static 'ahegao.png'%}" alt="" class="circle">
+                                    <span class="title">Random Title</span>
+                                    <p class='spantxt'> Level: {{ y.summonerLevel }}<br> SOmething embarasing
+                                    </p>
+                                    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                                </li>
+                                <li class="collection-item avatar blue-grey lighten-2">
+                                    <span class="title">Solo/Duo Rank</span>
+                                    <p class='spantxt'> Diamond V 69LP<br> 5W 2L <br> Winrate 69%
+
+                                    </p>
+                                </li>
+                                <li class="collection-item avatar blue-grey lighten-2">
+                                    <span class="title">Flex Queue</span>
+                                    <p class='spantxt'> Diamond V 69LP<br> 5W 2L <br> Winrate 69%
+
+                                    </p>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">This is a link</a>
+                            <a href="#">This is a link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s8">
+            <!-- <div class='container'> -->
+            <div class="row myrow border">
+                <div class="col s12 m6 l3">
+                    <p>s12 m6 l3</p>
+                    <p>s12 m6 l3</p>
+                    <p>s12 m6 l3</p>
+                    <p>s12 m6 l3</p>
+                </div>
+                <div class="col s12 m6 l3">
+                    <p>s12 m6 l3</p>
+                </div>
+                <div class="col s12 m6 l3">
+                    <p>s12 m6 l3</p>
+                </div>
+                <div class="col s12 m6 l3">
+                    <p>s12 m6 l3</p>
+                </div>
+            </div>
+            <!-- </div> -->
+        </div>
+
+    </div>
+
+
+    {% endfor %} {% endfor %} {% else %}
+
+    <h1>
+        Nothings here .. just yet!
+    </h1>
+
+
+
+    {% endif %} {% endblock %}
