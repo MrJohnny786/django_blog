@@ -26,12 +26,13 @@ def post_summoner(request):
     _partipants = Participants.objects.all().filter(summonerName=sum_name)
     for x in _partipants:
         riotgameId = x._game.riot_game_id
-        _games = Games.objects.all().filter(riot_game_id=riotgameId)
+        the_games = Games.objects.all().filter(riot_game_id=riotgameId)
         game_partipants = Participants.objects.all().filter(_game=riotgameId)
         riotgameId = str(riotgameId)
         demgames[riotgameId] = []
-        demgames[riotgameId].append(_games)
+        demgames[riotgameId].append(the_games)
         demgames[riotgameId].append(game_partipants)
+
     return render(request, 'league/summoner_details.html',{'summoner': summoner, 'games': demgames})
 
 def find_existing(request):
